@@ -3,6 +3,7 @@ package collin_ph.batterytweak;
 import java.io.BufferedReader;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
+import java.io.File;
 import java.io.FileDescriptor;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -29,11 +30,51 @@ private int led;
 private int disk;
 private int audio;
 public void onCreate(Bundle icicle){
-battweak = 1;
-cfs = 1;
-led = 1;
-disk = 1;
-audio = 1;
+try {
+   // open the file for reading
+		    InputStream in = openFileInput("/system/etc/batt.conf");
+
+		    // if file the available for reading
+		    if (in) {
+		      // prepare the file for reading
+		      InputStreamReader input = new InputStreamReader(in);
+		      BufferedReader buffreader = new BufferedReader(inputreader);
+
+		      String line;
+
+		      // read every line of the file into the line-variable, on line at the time
+		      while (( line = buffreader.readLine())) {
+		    	  if ( line == "enabled=1");
+		    	   battweak = 1;
+		    	  if (line == "enabled=0");
+		    	   battweak = 0;
+		    	  if (line == "CFStweaks=0");
+		    	   cfs = 0;
+			      if (line == "CFStweaks=1");
+			       cfs = 1;
+		    	  if (line == "audio_fix=0");
+		    	   audio = 0;
+		    	  if (line == "audio_fix=1")
+		    	   audio = 1;
+		    	  if (line == "LEDfix=1");
+		    	   led = 1;
+		    	  if (line == "LEDfix=0");
+		    	   led = 0;
+		    	  if (line == "MOUNToptions=1");
+		    	   disk = 1;
+		    	  if (line == "MOUNToptions=0");
+		    	   disk = 0;
+		    	  
+		        // do something with the settings from the file
+		      }
+
+		    }
+
+		    // close the file again
+		    in.close();
+		  } catch (java.io.FileNotFoundException e) {
+		    // do something if the myfilename.txt does not exits
+		  }
 super.onCreate(icicle);
 setContentView(R.layout.main);
 lv1=(ListView)findViewById(R.id.ListView01);
@@ -59,8 +100,7 @@ if (lv1.getItemAtPosition(position) == "Revert to 768mhz defaults"){
 	DataInputStream osRes = new DataInputStream(process.getInputStream());
 	{
 	try {
-		os.writeBytes("commands go here" + "\n");
-		os.writeBytes("and here" + "\n");
+		os.writeBytes("echo 0 > /sys/class/leds/amber/brightness" + "\n");
 	} catch (IOException e1) {
 		// TODO Auto-generated catch block
 		e1.printStackTrace();
