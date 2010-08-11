@@ -1,5 +1,15 @@
 package collin_ph.batterytweak;
 
+import java.io.BufferedReader;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.FileDescriptor;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
@@ -32,12 +42,58 @@ lv1.setTextFilterEnabled(true);
 lv1.setOnItemClickListener(new OnItemClickListener() {
 private int cobbles;
 private int cfs;
+private String commands;
+private String single;
 
 public void onItemClick(AdapterView<?> a, View v, int position, long id) {
 cobbles = 0;
 if (lv1.getItemAtPosition(position) == "Revert to 768mhz defaults"){
+	Process process = null;
+	try {
+		process = Runtime.getRuntime().exec("su");
+	} catch (IOException e1) {
+		// TODO Auto-generated catch block
+		e1.printStackTrace();
+	}
+	DataOutputStream os = new DataOutputStream(process.getOutputStream());
+	DataInputStream osRes = new DataInputStream(process.getInputStream());
+	{
+	try {
+		os.writeBytes("commands go here" + "\n");
+		os.writeBytes("and here" + "\n");
+	} catch (IOException e1) {
+		// TODO Auto-generated catch block
+		e1.printStackTrace();
+	}
+	   try {
+		os.flush();
+	} catch (IOException e1) {
+		// TODO Auto-generated catch block
+		e1.printStackTrace();
+	}
+	   ArrayAdapter<String> res = null;
+	}
+	try {
+		os.writeBytes("exit\n");
+	} catch (IOException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	try {
+		os.flush();
+	} catch (IOException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	try {
+		process.waitFor();
+	} catch (InterruptedException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
 	Toast.makeText( getApplicationContext() , "Reverted to 768mhz defaults", 
 	Toast.LENGTH_SHORT).show();
+
 }
 if (lv1.getItemAtPosition(position) == "Revert to 710mhz defaults"){
 	Toast.makeText( getApplicationContext() , "Reverted to 710mhz defaults", 
