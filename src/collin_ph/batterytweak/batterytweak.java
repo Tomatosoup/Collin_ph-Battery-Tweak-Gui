@@ -12,6 +12,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.PrintStream;
 import java.io.Reader;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -33,8 +34,10 @@ private String disk;
 private String cfs;
 private String led;
 private String batts;
+private String[] battconf;;	
 {
 	FileInputStream in = null;
+	battconf = new String[16];	
 	try {
 		in = new FileInputStream("/system/etc/batt.conf");
 	} catch (FileNotFoundException e) {
@@ -42,8 +45,6 @@ private String batts;
 		e.printStackTrace();
 	}
 	BufferedReader br = new BufferedReader(new InputStreamReader(in));
-	final String[] battconf;
-	battconf = new String[16];			
 	try {
 		for (int j = 0; j < battconf.length; j++){
 		battconf[j] = br.readLine();
@@ -90,7 +91,6 @@ private String batts;
 	}
 }
 private String lv_arr[]={"Revert to 768mhz defaults","Revert to 710mhz defaults","Customize Settings",batts,cfs,led,disk,audio};
-String[] battconf = new String[20];
 private String strLine;
 int batt;
 private String battery;
@@ -187,9 +187,19 @@ if (lv1.getItemAtPosition(position) == "Enable Audio Fix" && cobbles == 0){
 	battconf[0] = "audio_fix=1";
 	lv_arr[7] = "Disable Audio Fix";
 }
-
-	
+PrintStream out;
+	try {
+		out = new PrintStream("/sdcard/batt.conf");
+		for (int i = 0; i < battconf.length;) {
+		    out.println(battconf[i]);
+		    if (++i < battconf.length) {
+		        out.print("");
+		    }	
+		}
+	} catch (FileNotFoundException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
 }
 });
-}
-}
+}}
