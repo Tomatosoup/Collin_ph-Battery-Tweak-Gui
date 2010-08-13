@@ -3,6 +3,8 @@
       package="collin_ph.batterytweak"
       android:versionCode="1"
       android:versionName="1.0">
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+      
     <application android:icon="@drawable/icon" android:label="@string/app_name">
         <activity android:name=".batterytweak"
                   android:label="@string/app_name">
@@ -11,7 +13,22 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
+       <receiver android:name=".BootDemoReciever">
+       <intent-filter>
+       <action
+       android:name ="android.intent.action.BOOT_COMPLETED">
+       </action>
+       </intent-filter>
+       </receiver>
+       <service android:name=".BootService">
+       <intent-filter>
+       <action
+       android:name = "collin_ph.batterytweak.BootService">
+       </action>
+       </intent-filter>
+       </service>
+       
+                
     </application>
 
 

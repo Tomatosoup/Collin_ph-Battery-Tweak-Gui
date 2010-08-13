@@ -1,22 +1,12 @@
 package collin_ph.batterytweak;
 
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.DataInputStream;
 import java.io.DataOutputStream;
-import java.io.File;
-import java.io.FileDescriptor;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
-import java.io.Reader;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
@@ -25,7 +15,6 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
-
 public class batterytweak extends Activity
 {	
 private ListView lv1;
@@ -39,9 +28,8 @@ private String[] battconf;;
 	FileInputStream in = null;
 	battconf = new String[16];	
 	try {
-		in = new FileInputStream("/system/etc/batt.conf");
+		in = new FileInputStream("/data/data/tweaktool/batt.conf");
 	} catch (FileNotFoundException e) {
-		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
 	BufferedReader br = new BufferedReader(new InputStreamReader(in));
@@ -50,13 +38,11 @@ private String[] battconf;;
 		battconf[j] = br.readLine();
 		}
 	} catch (IOException e) {
-		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
 	try {
 		in.close();
 	} catch (IOException e) {
-		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
 	if (battconf[0].equals("audio_fix=0")==true){
@@ -91,12 +77,24 @@ private String[] battconf;;
 	}
 }
 private String lv_arr[]={"Revert to 768mhz defaults","Revert to 710mhz defaults","Customize Settings",batts,cfs,led,disk,audio};
-private String strLine;
 int batt;
-private String battery;
-private Object caramel;
 private ArrayAdapter<String> lv1Adapter;
 public void onCreate(Bundle icicle){
+	Process process;
+	try {
+		process = Runtime.getRuntime().exec("su");
+DataOutputStream os = new DataOutputStream(process.getOutputStream());
+   os.writeBytes("killall -9 batt.sh\n");
+   os.flush();
+	} catch (IOException e1) {
+	}
+	try {
+		process = Runtime.getRuntime().exec("su");
+DataOutputStream os = new DataOutputStream(process.getOutputStream());
+   os.writeBytes("nohup /system/bin/batt.sh 2>/dev/nul &\n");
+   os.flush();
+	} catch (IOException e1) {
+	}
 
 super.onCreate(icicle);
 setContentView(R.layout.main);
@@ -108,11 +106,20 @@ lv1.setOnItemClickListener(new OnItemClickListener() {
 private int cobbles;
 public void onItemClick(AdapterView<?> a, View v, int position, long id) {
 lv1Adapter.notifyDataSetChanged();
-
+Process process;
+	try {
+		process = Runtime.getRuntime().exec("su");
+DataOutputStream os = new DataOutputStream(process.getOutputStream());
+   os.writeBytes("killall -9 batt.sh\n");
+   os.flush();
+	} catch (IOException e1) {
+	}
+	
 cobbles = 0;
 if (lv1.getItemAtPosition(position) == "Revert to 768mhz defaults"){
 	Toast.makeText( getApplicationContext() , "Reverted to 768mhz defaults", 
 	Toast.LENGTH_SHORT).show();
+	
 }
 if (lv1.getItemAtPosition(position) == "Revert to 710mhz defaults"){
 	Toast.makeText( getApplicationContext() , "Reverted to 710mhz defaults", 
@@ -159,7 +166,7 @@ if (lv1.getItemAtPosition(position) == "Enable LED Fix" && cobbles == 0){
 	//Toast.makeText( getApplicationContext() , "LED Fix Enabled", 
 	//Toast.LENGTH_SHORT).show();
 	battconf[4] = "LEDfix=1";
-	lv_arr[5] = "Enable LED Fix";
+	lv_arr[5] = "Disable LED Fix";
 }
 if (lv1.getItemAtPosition(position) == "Disable New Disk Boot"){
 	//Toast.makeText( getApplicationContext() , "New Disk Boot Diabled", 
@@ -189,7 +196,7 @@ if (lv1.getItemAtPosition(position) == "Enable Audio Fix" && cobbles == 0){
 }
 PrintStream out;
 	try {
-		out = new PrintStream("/sdcard/batt.conf");
+		out = new PrintStream("/data/data/tweaktool/batt.conf");
 		for (int i = 0; i < battconf.length;) {
 		    out.println(battconf[i]);
 		    if (++i < battconf.length) {
@@ -197,9 +204,16 @@ PrintStream out;
 		    }	
 		}
 	} catch (FileNotFoundException e) {
-		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
+	try {
+		process = Runtime.getRuntime().exec("su");
+DataOutputStream os = new DataOutputStream(process.getOutputStream());
+   os.writeBytes("nohup /system/bin/batt.sh 2>/dev/nul &\n");
+   os.flush();
+	} catch (IOException e1) {
+	}
+
 }
 });
 }}
