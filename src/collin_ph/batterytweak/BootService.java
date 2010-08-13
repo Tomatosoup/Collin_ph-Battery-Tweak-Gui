@@ -1,14 +1,18 @@
 package collin_ph.batterytweak;
 
 import java.io.DataOutputStream;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import android.content.Intent;
 import android.os.IBinder;
 
 public class BootService extends android.app.Service{
+	private FileInputStream in;
+
 	{
-	Process process;
+		Process process;
 	try {
 		process = Runtime.getRuntime().exec("su");
 DataOutputStream os = new DataOutputStream(process.getOutputStream());

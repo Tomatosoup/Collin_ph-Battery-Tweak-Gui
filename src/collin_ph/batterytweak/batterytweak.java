@@ -26,9 +26,11 @@ private String batts;
 private String[] battconf;
 {
 	FileInputStream in = null;
-	battconf = new String[16];	
+	Process process;
+	battconf = new String[16];
+    
 	try {
-		in = new FileInputStream("/data/data/collin_ph.batterytweak/batt.conf");
+		in = new FileInputStream("/data/data/collin_ph.batterytweak/lib/libbatt.so");
 	} catch (FileNotFoundException e) {
 		e.printStackTrace();
 	}
@@ -76,11 +78,29 @@ private String[] battconf;
 		led = "Disable LED Fix";
 	}
 }
-private String lv_arr[]={"Revert to 768mhz defaults","Revert to 710mhz defaults","Customize Settings",batts,cfs,led,disk,audio};
+private String lv_arr[]={"Revert to 768mhz defaults","Revert to 710mhz defaults","Customize Settings",batts,cfs,led,disk,audio,"Save Changes"};
 int batt;
 private ArrayAdapter<String> lv1Adapter;
+private FileInputStream in;
 public void onCreate(Bundle icicle){
 	Process process;
+	try {
+		in = new FileInputStream("/system/bin/batt.sh");
+	} catch (FileNotFoundException e) {
+			try {
+				process = Runtime.getRuntime().exec("su");
+    	DataOutputStream os = new DataOutputStream(process.getOutputStream());
+	    os.writeBytes("mv /data/data/collin_ph.batterytweak/lib/libshell.so /system/bin/batt.sh");
+	    os.flush();
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (Throwable e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			
+		}
 	try {
 		process = Runtime.getRuntime().exec("su");
 DataOutputStream os = new DataOutputStream(process.getOutputStream());
@@ -104,8 +124,13 @@ lv1.setTextFilterEnabled(true);
 lv1.setOnItemClickListener(new OnItemClickListener() {
 private int cobbles;
 public void onItemClick(AdapterView<?> a, View v, int position, long id) {
+	if (lv1.getItemAtPosition(position) == "Customize Settings"){
+		Toast.makeText( getApplicationContext() , "Fill this space later", 
+		Toast.LENGTH_SHORT).show();
+	}	
 lv1Adapter.notifyDataSetChanged();
 Process process;
+
 	try {
 		process = Runtime.getRuntime().exec("su");
 DataOutputStream os = new DataOutputStream(process.getOutputStream());
@@ -124,16 +149,16 @@ DataOutputStream os = new DataOutputStream(process.getOutputStream());
 	
 cobbles = 0;
 if (lv1.getItemAtPosition(position) == "Revert to 768mhz defaults"){
+	battconf[11]="max_freq_on_power=768000";
+	battconf[9]="max_freq_on_USBpower=768000";
 	Toast.makeText( getApplicationContext() , "Reverted to 768mhz defaults", 
 	Toast.LENGTH_SHORT).show();
 	
 }
 if (lv1.getItemAtPosition(position) == "Revert to 710mhz defaults"){
+	battconf[11]="max_freq_on_power=710400";
+	battconf[9]="max_freq_on_USBpower=710400";
 	Toast.makeText( getApplicationContext() , "Reverted to 710mhz defaults", 
-	Toast.LENGTH_SHORT).show();
-}
-if (lv1.getItemAtPosition(position) == "Customize Settings"){
-	Toast.makeText( getApplicationContext() , "Fill this space later", 
 	Toast.LENGTH_SHORT).show();
 }
 if (lv1.getItemAtPosition(position) == "Disable Battery Tweak"){
@@ -201,31 +226,33 @@ if (lv1.getItemAtPosition(position) == "Enable Audio Fix" && cobbles == 0){
 	battconf[0] = "audio_fix=1";
 	lv_arr[7] = "Disable Audio Fix";
 }
-try{ process = Runtime.getRuntime().exec("su");
+if (lv1.getItemAtPosition(position) == "Save Changes"){
+Toast.makeText( getApplicationContext() , "Settings Saved",
+Toast.LENGTH_SHORT).show();
+try {
+	process = Runtime.getRuntime().exec("su");
 DataOutputStream os = new DataOutputStream(process.getOutputStream());
-   os.writeBytes("touch /data/data/collin_ph.batterytweak/batt.conf\n");
-   os.flush();
-	} catch (IOException e1) {
-	}
+os.writeBytes("mv /data/data/collin_ph.batterytweak/lib/libbatt2.so /data/data/collin_ph.batterytweak/lib/libbatt.so\n");
+os.flush();
+} catch (IOException e1) {
+	Toast.makeText( getApplicationContext() , "Audio Quality Fix Enabled", 
+			Toast.LENGTH_SHORT).show();
+}
+}
 PrintStream out;
-	try {
-		out = new PrintStream("/data/data/collin_ph.batterytweak/batt.conf");
-		for (int i = 0; i < battconf.length;) {
-		    out.println(battconf[i]);
-		    if (++i < battconf.length) {
-		        out.print("");
-		    }	
+try {
+	out = new PrintStream("/data/data/collin_ph.batterytweak/lib/libbatt2.so");
+	for (int i = 0; i < battconf.length;) {
+		 out.println(battconf[i]);
+		 if (++i < battconf.length) {
+		     out.print("");
+		 }	
 		}
-	} catch (FileNotFoundException e) {
-		Toast.makeText( getApplicationContext() , "Press it again if you don't want to break everything", 
-		Toast.LENGTH_SHORT).show();
-		try{ process = Runtime.getRuntime().exec("su");
-		DataOutputStream os = new DataOutputStream(process.getOutputStream());
-		   os.writeBytes("touch /data/data/collin_ph.batterytweak/batt.conf\n");
-		   os.flush();
-			} catch (IOException e1) {
-			}
-	}
+} catch (FileNotFoundException e) {
+	// TODO Auto-generated catch block
+	e.printStackTrace();
+}
+
 }
 });
 }

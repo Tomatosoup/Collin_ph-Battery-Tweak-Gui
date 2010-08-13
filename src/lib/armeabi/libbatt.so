@@ -1,0 +1,16 @@
+audio_fix=0
+CFStweaks=0
+MOUNToptions=1
+enabled=1
+LEDfix=1
+cpu_limiting_method=1
+min_freq_on_battery=245000
+max_freq_on_battery=710400
+min_freq_on_USBpower=245000
+max_freq_on_USBpower=710400
+min_freq_on_power=245000
+max_freq_on_power=710400
+polling_interval_on_battery=60
+polling_interval_on_power=15
+polling_interval_on_USBpower=15
+cpu_max_underclock_perc=33 
