@@ -17,7 +17,7 @@ private RadioGroup Phones;
 private Button b1;
 private Button b2;
 private int phone;
-private long check;
+private int check;
 @Override
 public void onCreate(Bundle savedInstanceState)
 {
@@ -77,86 +77,68 @@ Phones.setOnCheckedChangeListener(new OnCheckedChangeListener()
 		}
 public void checkphone()
 {
-	if (check == 0)
+	switch(check)
 	{
-		Phones.check(R.id.option1);
-	}
-	if (check == 1)
-	{
-		Phones.check(R.id.option2);
-	}
-	if (check == 2)
-	{
-		Phones.check(R.id.option3);
-	}
-	if (check == 3)
-	{
-		Phones.check(R.id.option4);
-	}
-	if (check == 4)
-	{
-		Phones.check(R.id.option4);
-	}
-	if (check == 4)
-	{
-		Phones.check(R.id.option5);
-	}
-	if (check == 5)
-	{
-		Phones.check(R.id.option6);
-	}
-	if (check == 6)
-	{
-		Phones.check(R.id.option7);
-	}
-	if (check == 7)
-	{
-		Phones.check(R.id.option8);
-	}
-	if (check == 8)
-	{
-		Phones.check(R.id.option9);
-	}
-	if (check == 9)
-	{
-		Phones.check(R.id.option10);
-	}
-	if (check == 10)
-	{
-		Phones.check(R.id.option11);
-	}
-	if (check == 11)
-	{
-		Phones.check(R.id.option12);
-	}
-	if (check == 12)
-	{
-		Phones.check(R.id.option13);
-	}
-	if (check == 13)
-	{
-		Phones.check(R.id.option14);
-	}
-	if (check == 14)
-	{
-		Phones.check(R.id.option15);
-	}
-	if (check == 15)
-	{
-		Phones.check(R.id.option16);
-	}
-	if (check == 17)
-	{
-		Phones.check(R.id.option18);
-	}
-	if (check == 18)
-	{
-		Phones.check(R.id.option19);
-	}
-	if (check == 19)
-	{
-		Phones.check(R.id.option20);
+	case 0:
+	{Phones.check(R.id.option1);}
+	break;
+	case 1:
+	{Phones.check(R.id.option2);}
+	break;
+	case 2:
+	{Phones.check(R.id.option3);}
+	break;
+	case 3:
+	{Phones.check(R.id.option4);}
+	break;
+	case 4:
+	{Phones.check(R.id.option5);}
+	break;
+	case 5:
+	{Phones.check(R.id.option6);}
+	break;
+	case 6:
+	{Phones.check(R.id.option7);}
+	break;
+	case 7:
+	{Phones.check(R.id.option8);}
+	break;
+	case 8:
+	{Phones.check(R.id.option9);}
+	break;
+	case 9:
+	{Phones.check(R.id.option10);}
+	break;
+	case 10:
+	{Phones.check(R.id.option11);}
+	break;
+	case 11:
+	{Phones.check(R.id.option12);}
+	break;
+	case 12:
+	{Phones.check(R.id.option13);}
+	break;
+	case 13:
+	{Phones.check(R.id.option14);}
+	break;
+	case 14:
+	{Phones.check(R.id.option15);}
+	break;
+	case 15:
+	{Phones.check(R.id.option16);}
+	break;
+	case 16:
+	{Phones.check(R.id.option17);}
+	break;
+	case 17:
+	{Phones.check(R.id.option18);}
+	break;
+	case 18:
+	{Phones.check(R.id.option19);}
+	break;
+	case 19:
+	{Phones.check(R.id.option20);}
+	break;
 	}
 }
-
 }
