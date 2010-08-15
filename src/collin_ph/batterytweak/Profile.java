@@ -1,85 +1,82 @@
 package collin_ph.batterytweak;
-
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.Toast;
 import android.widget.RadioGroup.OnCheckedChangeListener;
 public class Profile extends Activity
 {
-	 private RadioGroup Phones;
-	 private Button b1;
-	 private Button b2;
-	 private int phone;
-	 private long check;
-	 private int checkedId;
+private RadioGroup Phones;
+private Button b1;
+private Button b2;
+private int phone;
+private long check;
 @Override
 public void onCreate(Bundle savedInstanceState)
 {
-try {
-	FileInputStream fis = openFileInput("Phone");
-	check = fis.read();
-	fis.close();
-} catch (FileNotFoundException e1) {
-	// TODO Auto-generated catch block
-	e1.printStackTrace();
-} catch (IOException e) {
-	// TODO Auto-generated catch block
-	e.printStackTrace();
-}
-setTitle("Profile");
-super.onCreate(savedInstanceState);
-setContentView(R.layout.profile);
-Phones = (RadioGroup) findViewById(R.id.Phones1);
-checkphone();
-b1=(Button)findViewById(R.id.widget52);
-b2=(Button)findViewById(R.id.widget49);
-b1.setOnClickListener(new OnClickListener(){
-
-	public void onClick(View arg0) {
-	FileOutputStream fos;
-	try {
-		fos = openFileOutput("Phone", Context.MODE_PRIVATE);
-	fos.write(phone);
-	fos.close();
-	} catch (FileNotFoundException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	} catch (IOException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	}
-		finish();
-		
-	}
-});
-b2.setOnClickListener(new OnClickListener(){
-
-	public void onClick(View arg0) {
-		finish();
-		
-	}
-});
-Phones.setOnCheckedChangeListener(new OnCheckedChangeListener()
+	try 
 	{
-		public void onCheckedChanged(RadioGroup Phones, int checkedId) {
+		FileInputStream fis = openFileInput("Phone");
+		check = fis.read();
+		fis.close();
+	}
+	catch (FileNotFoundException e1)
+	{
+	}
+	catch (IOException e)
+	{
+	}
+		setTitle("Profile");
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.profile);
+		Phones = (RadioGroup) findViewById(R.id.Phones1);
+		checkphone();
+		b1=(Button)findViewById(R.id.widget52);
+		b2=(Button)findViewById(R.id.widget49);
+		b1.setOnClickListener(new OnClickListener()
+		{
+			public void onClick(View arg0) {
+			FileOutputStream fos;
+			try 
+			{
+				fos = openFileOutput("Phone", Context.MODE_PRIVATE);
+				fos.write(phone);
+				fos.close();
+			}
+			catch (FileNotFoundException e)
+			{	
+			}
+			catch (IOException e)
+			{
+			}
+			finish();		
+			}
+		});
+		b2.setOnClickListener(new OnClickListener()
+		{
+			public void onClick(View arg0)
+			{
+				finish();				
+			}
+		});
+Phones.setOnCheckedChangeListener(new OnCheckedChangeListener()
+		{
+			public void onCheckedChanged(RadioGroup Phones, int checkedId)
+			{
 			phone = (checkedId - 2131034117);
-		}
+			}
 	
-});
-}
-public void checkphone(){
+		});
+		}
+public void checkphone()
+{
 	if (check == 0)
 	{
 		Phones.check(R.id.option1);
