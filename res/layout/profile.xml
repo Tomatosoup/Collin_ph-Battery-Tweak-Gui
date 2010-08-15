@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+android:id="@+id/widget50"
+android:layout_width="fill_parent"
+android:layout_height="fill_parent"
+xmlns:android="http://schemas.android.com/apk/res/android"
+>
+<ScrollView
+android:id="@+id/widget46"
+android:layout_width="320px"
+android:layout_height="390px"
+android:layout_alignParentTop="true"
+android:layout_alignParentLeft="true"
+>
+<RadioGroup
+android:id="@+id/Phones1"
+android:layout_width="320px"
+android:layout_height="390px"
+android:orientation="vertical"
+>
+<RadioButton
+android:checked="false"
+android:text="HTC Hero (CDMA)"
+android:id="@+id/option1" />
+<RadioButton
+android:checked="false"
+android:text="Other Phone"
+android:id="@+id/option2" />
+<RadioButton
+android:checked="false"
+android:text="Other Phone"
+android:id="@+id/option3" />
+<RadioButton
+android:checked="false"
+android:text="Other Phone"
+android:id="@+id/option4" />
+<RadioButton
+android:checked="false"
+android:text="Other Phone"
+android:id="@+id/option5" />
+<RadioButton
+android:checked="false"
+android:text="Other Phone"
+android:id="@+id/option6" />
+<RadioButton
+android:checked="false"
+android:text="Other Phone"
+android:id="@+id/option7" />
+<RadioButton
+android:checked="false"
+android:text="Other Phone"
+android:id="@+id/option8" />
+<RadioButton
+android:checked="false"
+android:text="Other Phone"
+android:id="@+id/option9" />
+<RadioButton
+android:checked="false"
+android:text="Other Phone"
+android:id="@+id/option10" />
+<RadioButton
+android:checked="false"
+android:text="Other Phone"
+android:id="@+id/option11" />
+<RadioButton
+android:checked="false"
+android:text="Other Phone"
+android:id="@+id/option12" />
+<RadioButton
+android:checked="false"
+android:text="Other Phone"
+android:id="@+id/option13" />
+<RadioButton
+android:checked="false"
+android:text="Other Phone"
+android:id="@+id/option14" />
+<RadioButton
+android:checked="false"
+android:text="Other Phone"
+android:id="@+id/option15" />
+<RadioButton
+android:checked="false"
+android:text="Other Phone"
+android:id="@+id/option16" />
+<RadioButton
+android:checked="false"
+android:text="Other Phone"
+android:id="@+id/option17" />
+<RadioButton
+android:checked="false"
+android:text="Other Phone"
+android:id="@+id/option18" />
+<RadioButton
+android:checked="false"
+android:text="Other Phone"
+android:id="@+id/option19" />
+<RadioButton
+android:checked="false"
+android:text="Other Phone"
+android:id="@+id/option20" />
+</RadioGroup>
+</ScrollView>
+<Button
+android:id="@+id/widget49"
+android:layout_width="160px"
+android:layout_height="wrap_content"
+android:text="Cancel"
+android:layout_alignParentBottom="true"
+android:layout_alignParentRight="true"
+>
+</Button>
+<Button
+android:id="@+id/widget52"
+android:layout_width="160px"
+android:layout_height="wrap_content"
+android:text="Save"
+android:layout_alignParentBottom="true"
+android:layout_alignParentLeft="true"
+>
+</Button>
+</RelativeLayout>

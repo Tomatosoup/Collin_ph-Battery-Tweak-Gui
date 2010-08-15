@@ -6,15 +6,13 @@
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
       
     <application android:icon="@drawable/icon" android:label="@string/app_name">
-        <activity android:name=".batterytweak"
+        <activity android:name=".Main"
                   android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-      <activity android:name=".customize" android:label="@string/app_name">
-      </activity>
        <receiver android:name=".BootDemoReciever">
        <intent-filter>
        <action
@@ -29,8 +27,11 @@
        </action>
        </intent-filter>
        </service>
-       
-                
+        <activity android:name=".Battery"></activity> 
+        <activity android:name=".Diagnostics"></activity>
+        <activity android:name=".Fixes"></activity>
+        <activity android:name=".Performance"></activity>
+        <activity android:name=".Profile"></activity>         
     </application>
 
 

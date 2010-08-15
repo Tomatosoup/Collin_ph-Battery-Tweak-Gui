@@ -9,11 +9,13 @@ import android.content.Intent;
  * @author BMB
  *
  */
-public class BootDemoReciever extends BroadcastReceiver {
+public class BootDemoReciever extends BroadcastReceiver
+{
  @Override
- public void onReceive(final Context context, final Intent bootintent) {
+ public void onReceive(final Context context, final Intent bootintent) 
+ {
   Intent mServiceIntent = new Intent();
-mServiceIntent.setAction("collin_ph.batterytweak.BootService");
+  mServiceIntent.setAction("collin_ph.batterytweak.BootService");
   context.startService(mServiceIntent);
  }
 }
