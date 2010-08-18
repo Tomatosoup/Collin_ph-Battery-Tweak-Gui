@@ -31,7 +31,8 @@
         <activity android:name=".Diagnostics"></activity>
         <activity android:name=".Fixes"></activity>
         <activity android:name=".Performance"></activity>
-        <activity android:name=".Profile"></activity>         
+        <activity android:name=".Profile"></activity>      
+        <activity android:name=".SliderDialog"></activity>       
     </application>
 
 

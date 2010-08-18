@@ -2,4 +2,6 @@
 <resources>
     <string name="hello">Tweak Tool</string>
     <string name="app_name">Tweak Tool</string>
+    <string name="cpu_method">Method For CPU Control</string>
+    
 </resources>

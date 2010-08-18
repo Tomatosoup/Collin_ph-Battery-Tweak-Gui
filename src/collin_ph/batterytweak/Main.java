@@ -3,8 +3,10 @@ package collin_ph.batterytweak;
 import java.io.DataOutputStream;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -62,7 +64,17 @@ public void onItemClick(AdapterView<?> a, View v, int position, long id)
 	}
 	if (lv1.getItemAtPosition(position) == "Battery")
 	{
-		Main.this.startActivity(Battery);
+		try 
+		{
+			openFileInput("Phone");
+			Main.this.startActivity(Battery);
+		}
+		catch (FileNotFoundException e1)
+		{
+			Toast.makeText( getApplicationContext() , "Please select a profile first!", 
+			Toast.LENGTH_SHORT).show();
+			Main.this.startActivity(Profile);
+		}
 	}
 	if (lv1.getItemAtPosition(position) == "Performance")
 	{

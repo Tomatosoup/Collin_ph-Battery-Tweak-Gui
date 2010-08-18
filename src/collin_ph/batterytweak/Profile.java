@@ -70,7 +70,7 @@ Phones.setOnCheckedChangeListener(new OnCheckedChangeListener()
 		{
 			public void onCheckedChanged(RadioGroup Phones, int checkedId)
 			{
-			phone = (checkedId - 2131034117);
+			phone = (checkedId - R.id.option1 + 1);
 			}
 	
 		});
@@ -79,64 +79,64 @@ public void checkphone()
 {
 	switch(check)
 	{
-	case 0:
+	case 1:
 	{Phones.check(R.id.option1);}
 	break;
-	case 1:
+	case 2:
 	{Phones.check(R.id.option2);}
 	break;
-	case 2:
+	case 3:
 	{Phones.check(R.id.option3);}
 	break;
-	case 3:
+	case 4:
 	{Phones.check(R.id.option4);}
 	break;
-	case 4:
+	case 5:
 	{Phones.check(R.id.option5);}
 	break;
-	case 5:
+	case 6:
 	{Phones.check(R.id.option6);}
 	break;
-	case 6:
+	case 7:
 	{Phones.check(R.id.option7);}
 	break;
-	case 7:
+	case 8:
 	{Phones.check(R.id.option8);}
 	break;
-	case 8:
+	case 9:
 	{Phones.check(R.id.option9);}
 	break;
-	case 9:
+	case 10:
 	{Phones.check(R.id.option10);}
 	break;
-	case 10:
+	case 11:
 	{Phones.check(R.id.option11);}
 	break;
-	case 11:
+	case 12:
 	{Phones.check(R.id.option12);}
 	break;
-	case 12:
+	case 13:
 	{Phones.check(R.id.option13);}
 	break;
-	case 13:
+	case 14:
 	{Phones.check(R.id.option14);}
 	break;
-	case 14:
+	case 15:
 	{Phones.check(R.id.option15);}
 	break;
-	case 15:
+	case 16:
 	{Phones.check(R.id.option16);}
 	break;
-	case 16:
+	case 17:
 	{Phones.check(R.id.option17);}
 	break;
-	case 17:
+	case 18:
 	{Phones.check(R.id.option18);}
 	break;
-	case 18:
+	case 19:
 	{Phones.check(R.id.option19);}
 	break;
-	case 19:
+	case 20:
 	{Phones.check(R.id.option20);}
 	break;
 	}

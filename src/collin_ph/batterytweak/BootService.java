@@ -16,6 +16,15 @@ public class BootService extends android.app.Service
 		{
 			process = Runtime.getRuntime().exec("su");
 			DataOutputStream os = new DataOutputStream(process.getOutputStream());
+			os.writeBytes("killall batt.sh\n");
+			os.flush();
+		} catch (IOException e1) 
+			{
+			}
+		try 
+		{
+			process = Runtime.getRuntime().exec("su");
+			DataOutputStream os = new DataOutputStream(process.getOutputStream());
 			os.writeBytes("nohup /data/data/collin_ph.batterytweak/lib/batt.sh 2>/dev/nul &\n");
 			os.flush();
 		} catch (IOException e1) 
