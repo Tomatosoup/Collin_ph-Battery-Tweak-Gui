@@ -7,7 +7,7 @@ xmlns:android="http://schemas.android.com/apk/res/android"
 >
 <ScrollView
 android:id="@+id/widget46"
-android:layout_width="320px"
+android:layout_width="fill_parent"
 android:layout_height="390px"
 android:layout_alignParentTop="true"
 android:layout_alignParentLeft="true"

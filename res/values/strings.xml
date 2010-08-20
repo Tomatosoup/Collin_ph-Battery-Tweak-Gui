@@ -3,5 +3,6 @@
     <string name="hello">Tweak Tool</string>
     <string name="app_name">Tweak Tool</string>
     <string name="cpu_method">Method For CPU Control</string>
+    <string name="phones">Polling Interval</string>
     
 </resources>

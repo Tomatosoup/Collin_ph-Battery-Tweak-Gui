@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_width="fill_parent"
+android:layout_height="wrap_content">
+<ScrollView
+android:paddingTop="5px"
+android:paddingLeft="5px"
+android:id="@+id/edittext"
+android:layout_width="fill_parent"
+android:layout_height="200px"
+android:layout_alignParentTop="true"
+android:layout_alignParentLeft="true"
+>
+<TextView
+android:id="@+id/widget31"
+android:layout_width="fill_parent"
+android:layout_height="fill_parent"
+android:layout_alignParentTop="true"
+android:layout_alignParentLeft="true"
+android:text="The makers of Tweak Tool make every effort to deliver a high quality product, however, we do not guarantee that our products are free from defects. Our software is provided 'as is', and you agree to use the software at your own risk.  We make no warranties as to performance, merchantability, fitness for a particular purpose, or any other warranties whether expressed or implied. No oral or written communication from the maker. Under no circumstances shall the makers of Tweak Tool be liable for direct, indirect, special, incidental, or consequential damages resulting from the use, misuse, or inability to use this software, even if Tweak Tool has been advised of the possibility of such damages.  These exclusions and limitations may not apply in all jurisdictions. You may have additional rights and some of these limitations may not apply to you."
+>
+</TextView>
+</ScrollView>
+<Button
+ android:id="@+id/Button02"
+ android:layout_below="@id/edittext"
+ android:layout_width="150px"
+ android:layout_alignParentRight="true"
+ android:layout_height="wrap_content"
+ android:text="Disagree" />
+ <Button
+ android:id="@+id/Button01"
+ android:layout_below="@id/edittext"
+ android:layout_width="150px"
+ android:layout_alignParentLeft="true"
+ android:layout_height="wrap_content"
+ android:text="Agree" />
+</RelativeLayout>

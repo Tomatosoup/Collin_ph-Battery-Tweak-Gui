@@ -10,6 +10,7 @@ package collin_ph.batterytweak;
 public final class R {
     public static final class array {
         public static final int cpu_methods=0x7f040000;
+        public static final int polling=0x7f040001;
     }
     public static final class attr {
     }
@@ -17,51 +18,59 @@ public final class R {
         public static final int icon=0x7f020000;
     }
     public static final class id {
-        public static final int Button01=0x7f060021;
-        public static final int Button02=0x7f060022;
-        public static final int LinearLayout01=0x7f060005;
-        public static final int ListView01=0x7f060006;
-        public static final int Phones1=0x7f060009;
-        public static final int Seekbar01=0x7f060020;
-        public static final int option1=0x7f06000a;
-        public static final int option10=0x7f060013;
-        public static final int option11=0x7f060014;
-        public static final int option12=0x7f060015;
-        public static final int option13=0x7f060016;
-        public static final int option14=0x7f060017;
-        public static final int option15=0x7f060018;
-        public static final int option16=0x7f060019;
-        public static final int option17=0x7f06001a;
-        public static final int option18=0x7f06001b;
-        public static final int option19=0x7f06001c;
-        public static final int option2=0x7f06000b;
-        public static final int option20=0x7f06001d;
-        public static final int option3=0x7f06000c;
-        public static final int option4=0x7f06000d;
-        public static final int option5=0x7f06000e;
-        public static final int option6=0x7f06000f;
-        public static final int option7=0x7f060010;
-        public static final int option8=0x7f060011;
-        public static final int option9=0x7f060012;
-        public static final int widget42=0x7f060000;
-        public static final int widget43=0x7f060002;
-        public static final int widget46=0x7f060008;
-        public static final int widget49=0x7f06001e;
-        public static final int widget50=0x7f060007;
-        public static final int widget52=0x7f06001f;
-        public static final int widget55=0x7f060001;
-        public static final int widgeta=0x7f060004;
-        public static final int widgetb=0x7f060003;
+        public static final int Button01=0x7f070008;
+        public static final int Button02=0x7f070007;
+        public static final int LinearLayout01=0x7f070009;
+        public static final int ListView01=0x7f07000a;
+        public static final int Phones1=0x7f07000d;
+        public static final int Seekbar01=0x7f070024;
+        public static final int edittext=0x7f070005;
+        public static final int option1=0x7f07000e;
+        public static final int option10=0x7f070017;
+        public static final int option11=0x7f070018;
+        public static final int option12=0x7f070019;
+        public static final int option13=0x7f07001a;
+        public static final int option14=0x7f07001b;
+        public static final int option15=0x7f07001c;
+        public static final int option16=0x7f07001d;
+        public static final int option17=0x7f07001e;
+        public static final int option18=0x7f07001f;
+        public static final int option19=0x7f070020;
+        public static final int option2=0x7f07000f;
+        public static final int option20=0x7f070021;
+        public static final int option3=0x7f070010;
+        public static final int option4=0x7f070011;
+        public static final int option5=0x7f070012;
+        public static final int option6=0x7f070013;
+        public static final int option7=0x7f070014;
+        public static final int option8=0x7f070015;
+        public static final int option9=0x7f070016;
+        public static final int widget31=0x7f070006;
+        public static final int widget42=0x7f070000;
+        public static final int widget43=0x7f070002;
+        public static final int widget46=0x7f07000c;
+        public static final int widget49=0x7f070022;
+        public static final int widget50=0x7f07000b;
+        public static final int widget52=0x7f070023;
+        public static final int widget55=0x7f070001;
+        public static final int widgeta=0x7f070004;
+        public static final int widgetb=0x7f070003;
     }
     public static final class layout {
         public static final int battery=0x7f030000;
-        public static final int main=0x7f030001;
-        public static final int profile=0x7f030002;
-        public static final int sliderdialog=0x7f030003;
+        public static final int disclaimer=0x7f030001;
+        public static final int main=0x7f030002;
+        public static final int profile=0x7f030003;
+        public static final int sliderdialog=0x7f030004;
+        public static final int textdialog=0x7f030005;
     }
     public static final class string {
         public static final int app_name=0x7f050001;
         public static final int cpu_method=0x7f050002;
         public static final int hello=0x7f050000;
+        public static final int phones=0x7f050003;
+    }
+    public static final class style {
+        public static final int FullHeightDialog=0x7f060000;
     }
 }

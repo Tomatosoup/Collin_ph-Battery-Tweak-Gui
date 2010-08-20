@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
       package="collin_ph.batterytweak"
+      android:screenOrientation="portrait"
       android:versionCode="1"
       android:versionName="1.0">
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
       
     <application android:icon="@drawable/icon" android:label="@string/app_name">
         <activity android:name=".Main"
+       			  android:screenOrientation="portrait"
+       			   android:configChanges="keyboardHidden|orientation"
                   android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -27,12 +30,12 @@
        </action>
        </intent-filter>
        </service>
-        <activity android:name=".Battery"></activity> 
-        <activity android:name=".Diagnostics"></activity>
-        <activity android:name=".Fixes"></activity>
-        <activity android:name=".Performance"></activity>
-        <activity android:name=".Profile"></activity>      
-        <activity android:name=".SliderDialog"></activity>       
+        <activity android:name=".Battery" android:screenOrientation="portrait" android:configChanges="keyboardHidden|orientation"></activity> 
+        <activity android:name=".Diagnostics" android:screenOrientation="portrait" android:configChanges="keyboardHidden|orientation"></activity>
+        <activity android:name=".Fixes" android:screenOrientation="portrait" android:configChanges="keyboardHidden|orientation"></activity>
+        <activity android:name=".Performance" android:screenOrientation="portrait" android:configChanges="keyboardHidden|orientation"></activity>
+        <activity android:name=".Profile" android:screenOrientation="portrait" android:configChanges="keyboardHidden|orientation"></activity>      
+        <activity android:name=".SliderDialog" android:screenOrientation="portrait" android:configChanges="keyboardHidden|orientation"></activity>       
     </application>
 
 

@@ -9,7 +9,7 @@ import android.widget.ListView;
 import android.widget.AdapterView.OnItemClickListener;
 public class Fixes extends Activity
 {
-	private String lv_arr[]={"This","is","a","temporary","placeholder","!"};
+	private String lv_arr[]={"Enable Audio Fix","Zipalign All Applications"};
 	int batt;
 	private ArrayAdapter<String> lv1Adapter;
 	private ListView lv1;
@@ -24,24 +24,24 @@ lv1.setAdapter(lv1Adapter);
 lv1.setTextFilterEnabled(true);
 lv1.setOnItemClickListener(new OnItemClickListener()
 {
+private int cobbles;
+
 public void onItemClick(AdapterView<?> a, View v, int position, long id)
 {
-	if (lv1.getItemAtPosition(position) == "Profile")
+	cobbles=0;
+	if (lv1.getItemAtPosition(position) == "Enable Audio Fix")
 	{
+		lv_arr[0] = "Disable Audio Fix";
+		lv1Adapter.notifyDataSetChanged();
+		cobbles=1;
 	}
-	if (lv1.getItemAtPosition(position) == "Battery")
+	if (lv1.getItemAtPosition(position) == "Disable Audio Fix" && cobbles==0)
 	{
+		lv_arr[0] = "Enable Audio Fix";
+		lv1Adapter.notifyDataSetChanged();
 	}
-	if (lv1.getItemAtPosition(position) == "Performance")
+	if (lv1.getItemAtPosition(position) == "Zipalign All Applications")
 	{
-	}
-	if (lv1.getItemAtPosition(position) == "Other Tweaks/Fixes")
-	{
-	}
-	if (lv1.getItemAtPosition(position) == "Diagnostics")
-	{
-	}
-	if (lv1.getItemAtPosition(position) == "Save")
-	{
+		//insert zipalign stuff here
 	}
 };});}}

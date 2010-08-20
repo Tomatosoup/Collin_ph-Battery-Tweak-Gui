@@ -41,6 +41,8 @@ private Button b2;
 private ListView lv1;
 private ArrayAdapter<String> lv1Adapter;
 private int check;
+private Button b3;
+private Button b4;
 
 public void onCreate(Bundle icicle)
 {
@@ -51,9 +53,9 @@ Minb = "245000";
 Maxp = "710000";
 Maxu = "710000";
 Maxb = "710000";
-Pollp = "15";
-Pollu = "15";
-Pollb = "60";
+Pollp = "15 sec";
+Pollu = "15 sec";
+Pollb = "1 min";
 CPUred = "33";
 super.onCreate(icicle);
 phoneset();
@@ -80,14 +82,15 @@ ArrayAdapter adapter = ArrayAdapter.createFromResource(this, R.array.cpu_methods
 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 s.setAdapter(adapter);
 lv1=(ListView)findViewById(R.id.widget55);
-final String lv_arr[]={"Min CPU Power:" + Minp + " MHz","Min CPU USB:" + Minu + " MHz","Min CPU Battery:" + Minb + " MHz","Max CPU Power:" + Maxp + " MHz","Max CPU USB:" + Maxu + " MHz","Max CPU Battery:" + Maxb + " MHz", "Polling Interval Power:" + Pollp + " sec","Polling Interval USB:" + Pollu + " sec","Polling Interval Battery:" + Pollb + " sec","Max CPU Reduction:" + CPUred + "%"};
+final String lv_arr[]={"Min CPU Power:" + Minp + " MHz","Min CPU USB:" + Minu + " MHz","Min CPU Battery:" + Minb + " MHz","Max CPU Power:" + Maxp + " MHz","Max CPU USB:" + Maxu + " MHz","Max CPU Battery:" + Maxb + " MHz", "Polling Interval Power:" + Pollp,"Polling Interval USB:" + Pollu,"Polling Interval Battery:" + Pollb,"Max CPU Reduction:" + CPUred + "%"};
 lv1Adapter=(new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, lv_arr));
 lv1.setAdapter(lv1Adapter);
 lv1.setTextFilterEnabled(true);
 lv1.setOnItemClickListener(new OnItemClickListener() {
 	private Button b3;
 	private Button b4;
-	public void onItemClick(AdapterView<?> a, View v, int position, long id) {
+	private String Pollq;
+	public void onItemClick(AdapterView<?> a, View v, final int position, long id) {
 		lv1Adapter.notifyDataSetChanged();
 		if (lv1.getItemIdAtPosition(position) == 0){
 	        final Dialog dialog = new Dialog(Battery.this);
@@ -337,130 +340,95 @@ lv1.setOnItemClickListener(new OnItemClickListener() {
 		}
 		if (lv1.getItemIdAtPosition(position) == 6){
 	        final Dialog dialog = new Dialog(Battery.this);
-	        dialog.setContentView(R.layout.sliderdialog);
-	        dialog.setTitle("Polling Interval Power:" + Pollp  + " sec");
+	        dialog.setContentView(R.layout.textdialog);
+	        dialog.setTitle("Polling Interval Power:" + Pollp);
 	        dialog.setCancelable(true);
+	        final Spinner x = (Spinner) dialog.findViewById(R.id.edittext);
+	        final ArrayAdapter tie = ArrayAdapter.createFromResource(dialog.getContext(), R.array.polling, android.R.layout.simple_spinner_item);
+	        tie.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+	        x.setAdapter(tie);
 	        dialog.show();
 	        b3=(Button) dialog.findViewById(R.id.Button02);
 	        b4=(Button) dialog.findViewById(R.id.Button01);
-	        final SeekBar seekBar = (SeekBar) dialog.findViewById(R.id.Seekbar01);
-	        seekBar.setMax(295);
-	        seekBar.setProgress(Integer.parseInt(Pollp)-5);
-		    final int progress = (seekBar.getProgress()+5);
-	        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener(){
-				public void onProgressChanged(SeekBar seekBar, int progress, boolean fromTouch) {		
-				dialog.setTitle("Polling Interval Power:" + String.valueOf(progress+5)  + " sec");
-				Pollp = Integer.toString(progress+5);
-				}
-				public void onStartTrackingTouch(SeekBar seekBar) {
-				}
-				public void onStopTrackingTouch(SeekBar seekBar) {		
-				}
-	        });
 	        b3.setOnClickListener(new OnClickListener()
 	        {
-	        	public void onClick(View arg0)
-	        	{
-	        		lv_arr[6] = "Polling Interval Power:" + Pollp + " sec";
-	        		lv1Adapter.notifyDataSetChanged();
-	        		dialog.dismiss();
-	        	}
+				public void onClick(View arg0) {
+			        Pollp = (String) x.getSelectedItem();
+	        		lv_arr[6] = "Polling Interval Power:" + Pollp;
+			        lv1Adapter.notifyDataSetChanged();
+					dialog.dismiss();
+				}
 	        });
 	        b4.setOnClickListener(new OnClickListener()
 	        {
-	        	public void onClick(View arg0)
-	        	{
-	        		Pollp = Integer.toString(progress);
-	        		lv_arr[6] = "Polling Interval Power:" + Pollp + " sec";
-	        		lv1Adapter.notifyDataSetChanged();
-	        		dialog.dismiss();		
-	        	}
+
+				public void onClick(View arg0) {
+					dialog.dismiss();
+					
+				}
 	        });
+
 		}
 		if (lv1.getItemIdAtPosition(position) == 7){
 	        final Dialog dialog = new Dialog(Battery.this);
-	        dialog.setContentView(R.layout.sliderdialog);
-	        dialog.setTitle("Polling Interval USB:" + Pollu  + " sec");
+	        dialog.setContentView(R.layout.textdialog);
+	        dialog.setTitle("Polling Interval USB:" + Pollu);
 	        dialog.setCancelable(true);
+	        final Spinner x = (Spinner) dialog.findViewById(R.id.edittext);
+	        ArrayAdapter tie = ArrayAdapter.createFromResource(dialog.getContext(), R.array.polling, android.R.layout.simple_spinner_item);
+	        tie.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+	        x.setAdapter(tie);
 	        dialog.show();
 	        b3=(Button) dialog.findViewById(R.id.Button02);
 	        b4=(Button) dialog.findViewById(R.id.Button01);
-	        final SeekBar seekBar = (SeekBar) dialog.findViewById(R.id.Seekbar01);
-	        seekBar.setMax(295);
-	        seekBar.setProgress(Integer.parseInt(Pollu)-5);
-		    final int progress = (seekBar.getProgress()+5);
-	        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener(){
-				public void onProgressChanged(SeekBar seekBar, int progress, boolean fromTouch) {		
-				dialog.setTitle("Polling Interval USB:" + String.valueOf(progress+5)  + " sec");
-				Pollu = Integer.toString(progress+5);
-				}
-				public void onStartTrackingTouch(SeekBar seekBar) {
-				}
-				public void onStopTrackingTouch(SeekBar seekBar) {		
-				}
-	        });
 	        b3.setOnClickListener(new OnClickListener()
 	        {
-	        	public void onClick(View arg0)
-	        	{
-	        		lv_arr[7] = "Polling Interval USB:" + Pollu + " sec";
-	        		lv1Adapter.notifyDataSetChanged();
-	        		dialog.dismiss();
-	        	}
+				public void onClick(View arg0) {
+			        Pollu = (String) x.getSelectedItem();
+	        		lv_arr[7] = "Polling Interval USB:" + Pollu;
+			        lv1Adapter.notifyDataSetChanged();
+					dialog.dismiss();
+				}
 	        });
 	        b4.setOnClickListener(new OnClickListener()
 	        {
-	        	public void onClick(View arg0)
-	        	{
-	        		Pollu = Integer.toString(progress);
-	        		lv_arr[7] = "Polling Interval USB:" + Pollu + " sec";
-	        		lv1Adapter.notifyDataSetChanged();
-	        		dialog.dismiss();		
-	        	}
+
+				public void onClick(View arg0) {
+					dialog.dismiss();
+					
+				}
 	        });
 		}
 		if (lv1.getItemIdAtPosition(position) == 8){
 	        final Dialog dialog = new Dialog(Battery.this);
-	        dialog.setContentView(R.layout.sliderdialog);
-	        dialog.setTitle("Polling Interval Battery:" + Pollb  + " sec");
+	        dialog.setContentView(R.layout.textdialog);
+	        dialog.setTitle("Polling Interval Battery:" + Pollb);
 	        dialog.setCancelable(true);
+	        final Spinner x = (Spinner) dialog.findViewById(R.id.edittext);
+	        final ArrayAdapter tie = ArrayAdapter.createFromResource(dialog.getContext(), R.array.polling, android.R.layout.simple_spinner_item);
+	        tie.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+	        x.setAdapter(tie);
 	        dialog.show();
 	        b3=(Button) dialog.findViewById(R.id.Button02);
 	        b4=(Button) dialog.findViewById(R.id.Button01);
-	        final SeekBar seekBar = (SeekBar) dialog.findViewById(R.id.Seekbar01);
-	        seekBar.setMax(295);
-	        seekBar.setProgress(Integer.parseInt(Pollb)-5);
-		    final int progress = (seekBar.getProgress()+5);
-	        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener(){
-				public void onProgressChanged(SeekBar seekBar, int progress, boolean fromTouch) {		
-				dialog.setTitle("Polling Interval Battery:" + String.valueOf(progress+5)  + " sec");
-				Pollb = Integer.toString(progress+5);
-				}
-				public void onStartTrackingTouch(SeekBar seekBar) {
-				}
-				public void onStopTrackingTouch(SeekBar seekBar) {		
-				}
-	        });
 	        b3.setOnClickListener(new OnClickListener()
 	        {
-	        	public void onClick(View arg0)
-	        	{
-	        		lv_arr[8] = "Polling Interval Battery:" + Pollb + " sec";
-	        		lv1Adapter.notifyDataSetChanged();
-	        		dialog.dismiss();
-	        	}
+				public void onClick(View arg0) {
+			        Pollb = (String) x.getSelectedItem();
+	        		lv_arr[8] = "Polling Interval Battery:" + Pollb;
+			        lv1Adapter.notifyDataSetChanged();
+					dialog.dismiss();
+				}
 	        });
 	        b4.setOnClickListener(new OnClickListener()
 	        {
-	        	public void onClick(View arg0)
-	        	{
-	        		Pollb = Integer.toString(progress);
-	        		lv_arr[8] = "Polling Interval Battery:" + Pollb + " sec";
-	        		lv1Adapter.notifyDataSetChanged();
-	        		dialog.dismiss();		
-	        	}
+
+				public void onClick(View arg0) {
+					dialog.dismiss();
+					
+				}
 	        });
-		}
+	        }
 		if (lv1.getItemIdAtPosition(position) == 9){
 	        final Dialog dialog = new Dialog(Battery.this);
 	        dialog.setContentView(R.layout.sliderdialog);

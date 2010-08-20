@@ -9,7 +9,7 @@ import android.widget.ListView;
 import android.widget.AdapterView.OnItemClickListener;
 public class Diagnostics extends Activity
 {
-	private String lv_arr[]={"This","is","a","temporary","placeholder","!"};
+	private String lv_arr[]={"Show Diagnostics","Save Diagnostics","Disable TweakTool"};
 	int batt;
 	private ArrayAdapter<String> lv1Adapter;
 	private ListView lv1;
@@ -24,24 +24,28 @@ lv1.setAdapter(lv1Adapter);
 lv1.setTextFilterEnabled(true);
 lv1.setOnItemClickListener(new OnItemClickListener()
 {
+private int cobbles;
+
 public void onItemClick(AdapterView<?> a, View v, int position, long id)
 {
-	if (lv1.getItemAtPosition(position) == "Profile")
+	cobbles=0;
+	if (lv1.getItemAtPosition(position) == "Disable TweakTool")
 	{
+		lv_arr[2] = "Enable TweakTool";
+		lv1Adapter.notifyDataSetChanged();
+		cobbles=1;
 	}
-	if (lv1.getItemAtPosition(position) == "Battery")
+	if (lv1.getItemAtPosition(position) == "Enable TweakTool" && cobbles==0)
 	{
+		lv_arr[2] = "Disable TweakTool";
+		lv1Adapter.notifyDataSetChanged();
 	}
-	if (lv1.getItemAtPosition(position) == "Performance")
+	if (lv1.getItemAtPosition(position) == "Show Diagnostics")
 	{
+		//insert diagnostics showing stuff here
 	}
-	if (lv1.getItemAtPosition(position) == "Other Tweaks/Fixes")
+	if (lv1.getItemAtPosition(position) == "Save Diagnostics")
 	{
-	}
-	if (lv1.getItemAtPosition(position) == "Diagnostics")
-	{
-	}
-	if (lv1.getItemAtPosition(position) == "Save")
-	{
+		//insert diagnostics saving things here
 	}
 };});}}
